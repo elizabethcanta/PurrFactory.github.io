@@ -1,2 +1,2 @@
-# PurrFactory.github.io
+# PurrFactory
 Incremental Game
