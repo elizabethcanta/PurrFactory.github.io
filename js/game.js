@@ -1,36 +1,22 @@
-/**
- * File: js/game.js
- * Description: Game logic for "Purr Factory" – Cat Petting Incremental Game.
- *              Implements: click/model/view separation, combo system, upgrades
- *              with escalating prices, auto-petter timer (single), 10 achievements,
- *              floating particles, toast notifications, background paw particles.
- * Authors: CS1XD3 Pair
- * Date: 2026-02
- */
-
 window.addEventListener("load", function () {
 
-  /* ══════════════════════════════════════════════════════════════
-     MODEL  ―  all game state. Never read from DOM elements.
-  ══════════════════════════════════════════════════════════════ */
   const model = {
-    purrs:          0,      // current purr count (resource)
-    totalPurrs:     0,      // lifetime purrs earned (never decrements)
-    clickValue:     1,      // base purrs per manual click
-    totalClicks:    0,      // total manual clicks ever
-    totalUpgrades:  0,      // total upgrade purchase events
-    distinctOwned:  new Set(),  // set of upgrade IDs with ≥1 purchase
+    purrs:          0,    
+    totalPurrs:     0,     
+    clickValue:     1,    
+    totalClicks:    0,     
+    totalUpgrades:  0,     
+    distinctOwned:  new Set(),  
 
     /* Auto-petter */
-    autoInterval:   null,   // reference to the running setInterval (or null)
-    autoSpeed:      0,      // 0=off, 1=slow (2000ms), 2=fast (750ms)
-    AUTO_SPEEDS:    [0, 2000, 750],  // index matches autoSpeed
+    autoInterval:   null,   
+    autoSpeed:      0,     
+    AUTO_SPEEDS:    [0, 2000, 750],  
 
     /* Combo */
-    comboLevel:     1,      // current multiplier (1–5)
-    comboTimer:     null,   // timeout to reset combo
-    COMBO_RESET_MS: 2000,   // ms without a click before combo resets
-    MAX_COMBO:      5,
+    comboLevel:     1,      
+    comboTimer:     null,   
+    COMBO_RESET_MS: 2000,   
 
     /* Per-upgrade data */
     upgradeCounts: {
@@ -51,9 +37,7 @@ window.addEventListener("load", function () {
     },
   };
 
-  /* ══════════════════════════════════════════════════════════════
-     UPGRADE DEFINITIONS
-  ══════════════════════════════════════════════════════════════ */
+
   const UPGRADES = [
     {
       id:          "ear_scratch",
@@ -133,9 +117,7 @@ window.addEventListener("load", function () {
     },
   ];
 
-  /* ══════════════════════════════════════════════════════════════
-     ACHIEVEMENT DEFINITIONS  (≥5 required; we have 10)
-  ══════════════════════════════════════════════════════════════ */
+
   const ACHIEVEMENTS = [
     {
       id:       "first_touch",
@@ -228,10 +210,6 @@ window.addEventListener("load", function () {
   const CAT_LOVE     = "😻";
   const CAT_SLEEP    = "😴";
   const CAT_WOW      = "🤩";
-
-  /* ══════════════════════════════════════════════════════════════
-     DOM REFERENCES
-  ══════════════════════════════════════════════════════════════ */
   const catBtn          = document.getElementById("cat-btn");
   const catEmoji        = document.getElementById("cat-emoji");
   const glowRing        = document.getElementById("glow-ring");
@@ -262,9 +240,7 @@ window.addEventListener("load", function () {
 
   let toastTimer        = null;
 
-  /* ══════════════════════════════════════════════════════════════
-     BACKGROUND PAW PARTICLES  (purely decorative)
-  ══════════════════════════════════════════════════════════════ */
+
   (function spawnBgPaws() {
     var SYMBOLS = ["🐾", "🐾", "🐱", "✨"];
     for (var i = 0; i < 14; i++) {
@@ -281,9 +257,7 @@ window.addEventListener("load", function () {
     }
   })();
 
-  /* ══════════════════════════════════════════════════════════════
-     INIT  ―  build shop & achievements UI
-  ══════════════════════════════════════════════════════════════ */
+
   function initShop() {
     shopList.innerHTML = "";
     UPGRADES.forEach(function (upg) {
@@ -321,9 +295,7 @@ window.addEventListener("load", function () {
     });
   }
 
-  /* ══════════════════════════════════════════════════════════════
-     CORE ACTIONS
-  ══════════════════════════════════════════════════════════════ */
+
 
   /* Manual click */
   function handleCatClick(e) {
@@ -413,9 +385,7 @@ window.addEventListener("load", function () {
     checkAchievements();
   }
 
-  /* ══════════════════════════════════════════════════════════════
-     ACHIEVEMENT CHECK
-  ══════════════════════════════════════════════════════════════ */
+
   function checkAchievements() {
     ACHIEVEMENTS.forEach(function (a) {
       if (a.unlocked) { return; }
@@ -431,9 +401,7 @@ window.addEventListener("load", function () {
     });
   }
 
-  /* ══════════════════════════════════════════════════════════════
-     TOAST NOTIFICATION
-  ══════════════════════════════════════════════════════════════ */
+
   function showToast(icon, msg) {
     toastIcon.textContent = icon;
     toastMsg.textContent  = msg;
@@ -449,9 +417,6 @@ window.addEventListener("load", function () {
     }, 3200);
   }
 
-  /* ══════════════════════════════════════════════════════════════
-     VIEW UPDATE  ―  reads only from model, writes only to DOM
-  ══════════════════════════════════════════════════════════════ */
   function updateView() {
     /* Header purr count */
     headerPurr.textContent = fmt(model.purrs);
@@ -534,9 +499,6 @@ window.addEventListener("load", function () {
     });
   }
 
-  /* ══════════════════════════════════════════════════════════════
-     HELPERS
-  ══════════════════════════════════════════════════════════════ */
 
   /* Format large numbers */
   function fmt(n) {
@@ -562,18 +524,14 @@ window.addEventListener("load", function () {
     return prev;
   }
 
-  /* ══════════════════════════════════════════════════════════════
-     KITTY IMAGE  ―  sleepyKitty by default, happyKitty on click
-     5-second timer returns to sleepy if no further click.
-  ══════════════════════════════════════════════════════════════ */
   var kittyImg        = document.getElementById("kitty-img");
   var kittyHappyTimer = null;
-  var HAPPY_DURATION  = 5000;   /* ms before returning to sleepy */
+  var HAPPY_DURATION  = 5000;  
 
   var KITTY_SLEEP = "img/sleepyKitty.jpg";
   var KITTY_HAPPY = "img/happyKitty.jpg";
 
-  /* Show happy face; reset the 5-s return timer on every call */
+
   function showHappyKitty() {
     if (!kittyImg) { return; }
     kittyImg.src = KITTY_HAPPY;
@@ -584,10 +542,7 @@ window.addEventListener("load", function () {
     }, HAPPY_DURATION);
   }
 
-  /* Legacy stub — called by autoPet; just keep kitty happy */
-  function setCatEmoji(emoji, ms) { /* no-op: image handled by showHappyKitty */ }
 
-  /* Spawn floating number at viewport coordinates */
   function spawnFloat(cx, cy, text) {
     var el = document.createElement("div");
     el.className   = "float-num";
@@ -599,9 +554,6 @@ window.addEventListener("load", function () {
     el.addEventListener("animationend", function () { el.remove(); });
   }
 
-  /* ══════════════════════════════════════════════════════════════
-     EVENT LISTENERS
-  ══════════════════════════════════════════════════════════════ */
   catBtn.addEventListener("click", handleCatClick);
 
   helpBtn.addEventListener("click", function () {
@@ -614,11 +566,9 @@ window.addEventListener("load", function () {
     if (e.target === helpModal) { helpModal.classList.add("hidden"); }
   });
 
-  /* ══════════════════════════════════════════════════════════════
-     START
-  ══════════════════════════════════════════════════════════════ */
+
   initShop();
   initAchievements();
   updateView();
 
-}); /* end load */
+});

@@ -1,45 +1,30 @@
-/*
- * File: css/style.css
- * Description: "Purr Factory" – Bright Pastel Pink Hello Kitty Theme
- *              Light, soft, bubblegum pink — kawaii & cheerful.
- * Authors: CS1XD3 Pair
- * Date: 2026-02
- */
-
-/* ══════════════════════════════════════════════
-   CSS CUSTOM PROPERTIES  —  Bright Pastel Pink
-══════════════════════════════════════════════ */
 :root {
-  /* Backgrounds — light & airy */
-  --bg-deep:    #fff0f7;   /* near-white blush */
-  --bg-mid:     #ffe4f2;   /* soft rose tint */
-  --panel:      #ffffff;   /* pure white panels */
-  --panel2:     #fff5fb;   /* barely-pink panel */
+  /* Backgrounds*/
+  --bg-deep:    #fff0f7;  
+  --bg-mid:     #ffe4f2;   
+  --panel:      #ffffff;  
+  --panel2:     #fff5fb;   
 
-  /* Borders */
-  --border:     #f5bcd8;   /* soft pink border */
-  --border-lt:  #ffadd6;   /* medium pink border */
+  --border:     #f5bcd8; 
+  --border-lt:  #ffadd6;  
 
-  /* Core pinks */
-  --pink:       #ff4d9e;   /* hot pink accent */
-  --pink-lt:    #ff85bc;   /* medium pink */
-  --pink-pale:  #ffc2e0;   /* pale bubblegum */
-  --pink-deep:  #e0006e;   /* deep magenta */
-  --rose:       #ff2d78;   /* vivid rose */
+  --pink:       #ff4d9e;  
+  --pink-lt:    #ff85bc;  
+  --pink-pale:  #ffc2e0; 
+  --pink-deep:  #e0006e;   
+  --rose:       #ff2d78;
 
-  /* Supporting */
-  --lavender:   #d580ff;   /* purple accent */
-  --lilac:      #f0c6ff;   /* light lilac */
-  --mint:       #ff9ed5;   /* pinkish highlight */
-  --cream:      #fff8fc;   /* creamy white */
+  --lavender:   #d580ff; 
+  --lilac:      #f0c6ff;  
+  --mint:       #ff9ed5;  
+  --cream:      #fff8fc; 
 
   /* Text */
-  --text:       #3d1a2e;   /* deep berry on light */
-  --text-dim:   #b06090;   /* muted rose */
+  --text:       #3d1a2e;   
+  --text-dim:   #b06090;  
   --text-dark:  #3d1a2e;
   --text-on-pink: #ffffff;
 
-  /* Glows & shadows */
   --glow-pink:  0 0 20px rgba(255,77,158,0.35);
   --glow-soft:  0 4px 20px rgba(255,77,158,0.15);
   --shadow:     0 4px 24px rgba(224, 100, 160, 0.15);
@@ -50,9 +35,6 @@
   --radius-xs: 8px;
 }
 
-/* ══════════════════════════════════════════════
-   RESET & BASE
-══════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 15px; }
 
@@ -71,9 +53,7 @@ body {
 /* Paw cursor */
 body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='28' font-size='28'%3E🐾%3C/text%3E%3C/svg%3E") 4 4, auto; }
 
-/* ══════════════════════════════════════════════
-   FLOATING PARTICLES
-══════════════════════════════════════════════ */
+
 #paw-layer {
   position: fixed; inset: 0;
   pointer-events: none; z-index: 0; overflow: hidden;
@@ -89,9 +69,6 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
   100% { transform: translateY(-8vh)  rotate(360deg) scale(1.1); opacity: 0; }
 }
 
-/* ══════════════════════════════════════════════
-   TOAST NOTIFICATION
-══════════════════════════════════════════════ */
 .toast {
   position: fixed; top: 24px; left: 50%;
   transform: translateX(-50%) translateY(-130px);
@@ -107,9 +84,7 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 .toast.show   { transform: translateX(-50%) translateY(0); }
 .toast.hidden { display: none; }
 
-/* ══════════════════════════════════════════════
-   HELP MODAL
-══════════════════════════════════════════════ */
+
 .modal-overlay {
   position: fixed; inset: 0;
   background: rgba(255,200,230,0.5);
@@ -148,9 +123,6 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 }
 .modal-close:hover { background: var(--pink); color: #fff; border-color: var(--pink); }
 
-/* ══════════════════════════════════════════════
-   LAYOUT
-══════════════════════════════════════════════ */
 .game-shell {
   max-width: 1160px; margin: 0 auto;
   padding: 0 16px 52px; position: relative; z-index: 1;
@@ -210,9 +182,6 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 .left-col  { display: flex; flex-direction: column; gap: 18px; }
 .right-col { display: flex; flex-direction: column; gap: 18px; }
 
-/* ══════════════════════════════════════════════
-   CARD BASE
-══════════════════════════════════════════════ */
 .card {
   background: var(--panel);
   border: 2px solid var(--border);
@@ -234,9 +203,7 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
   padding-bottom: 12px; border-bottom: 1.5px solid var(--border); letter-spacing: 0.5px;
 }
 
-/* ══════════════════════════════════════════════
-   CAT / HELLO KITTY CLICK AREA
-══════════════════════════════════════════════ */
+
 .cat-card { padding-bottom: 20px; }
 
 .cat-stage {
@@ -244,7 +211,6 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
   padding: 24px 0 18px; position: relative; min-height: 220px;
 }
 
-/* Soft pink glow ring */
 .glow-ring {
   position: absolute; width: 210px; height: 210px; border-radius: 50%;
   background: radial-gradient(circle, rgba(255,150,210,0.35) 0%, transparent 68%);
@@ -263,13 +229,12 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
   background: radial-gradient(circle, rgba(213,128,255,0.5) 0%, transparent 68%);
 }
 
-/* Cat button */
 .cat-btn {
   position: relative; width: 175px; height: 175px; border-radius: 50%;
   background: linear-gradient(145deg, #fff5fb, #ffe0f2);
   border: 3px solid var(--pink-pale);
   cursor: pointer; user-select: none;
-  overflow: hidden;                         /* keeps image clipped inside circle */
+  overflow: hidden;                       
   transition: transform 0.12s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, border-color 0.2s;
   box-shadow: 0 8px 32px rgba(255,100,170,0.2), 0 0 0 6px rgba(255,77,158,0.07);
   display: flex; align-items: center; justify-content: center;
@@ -280,7 +245,7 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
   border-color: var(--pink);
   box-shadow: 0 12px 40px rgba(255,77,158,0.3), 0 0 0 10px rgba(255,77,158,0.1), var(--glow-pink);
 }
-/* Click press — entire circle squishes */
+
 .cat-btn:active {
   transform: scale(0.87);
   box-shadow: 0 4px 16px rgba(255,77,158,0.25), 0 0 0 4px rgba(255,77,158,0.15);
@@ -301,7 +266,7 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 .cat-ear  { display: none; }
 .cat-emoji { display: none; }
 
-/* Hello Kitty image */
+
 .kitty-img {
   width: 145%;
   height: 145%;
@@ -313,7 +278,7 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
   display: block;
 }
 
-/* Combo badge */
+
 .combo-badge {
   position: absolute; top: 4px; right: 4px;
   background: linear-gradient(135deg, var(--rose), var(--lavender));
@@ -331,7 +296,7 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 #combo-text { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: #fff; line-height: 1; }
 .combo-label { font-size: 0.6rem; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 1px; }
 
-/* Cat stat bar */
+
 .cat-stats {
   display: flex; align-items: stretch; justify-content: center;
   border-top: 1.5px solid var(--border); margin-top: 4px;
@@ -341,7 +306,7 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 .cstat-lbl { font-size: 0.68rem; color: var(--text-dim); font-weight: 700; letter-spacing: 0.4px; margin-top: 3px; }
 .cstat-divider { width: 1.5px; background: var(--border); margin: 12px 0; }
 
-/* Floating +N */
+
 .float-num {
   position: fixed; font-family: 'Fredoka One', cursive; font-size: 1.6rem;
   color: var(--pink); pointer-events: none;
@@ -354,9 +319,7 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
   100% { opacity: 0;   transform: translateY(-95px) scale(0.8);  }
 }
 
-/* ══════════════════════════════════════════════
-   SCOREBOARD
-══════════════════════════════════════════════ */
+
 .purr-display { display: flex; align-items: baseline; gap: 10px; margin-bottom: 20px; }
 .purr-number {
   font-family: 'Fredoka One', cursive; font-size: 3.2rem;
@@ -419,9 +382,7 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 }
 .mood-emoji { font-size: 1.2rem; }
 
-/* ══════════════════════════════════════════════
-   UPGRADE SHOP
-══════════════════════════════════════════════ */
+
 .shop-list { display: flex; flex-direction: column; gap: 9px; }
 
 .upg-card {
@@ -474,9 +435,7 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
   100% { box-shadow: 0 0 0 0   rgba(255,77,158,0);     }
 }
 
-/* ══════════════════════════════════════════════
-   ACHIEVEMENTS
-══════════════════════════════════════════════ */
+
 .achieve-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
 
 .achv-badge {
@@ -516,9 +475,7 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
 .achv-name { font-size: 0.63rem; font-weight: 700; color: var(--text-dim); line-height: 1.3; }
 .achv-badge.unlocked .achv-name { color: var(--pink); }
 
-/* ══════════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════════ */
+
 @media (max-width: 860px) {
   .game-body { grid-template-columns: 1fr; }
   .cat-btn   { width: 155px; height: 155px; }
@@ -532,9 +489,6 @@ body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'
   .stats-row    { gap: 7px; }
 }
 
-/* ══════════════════════════════════════════════
-   SCROLLBAR
-══════════════════════════════════════════════ */
 ::-webkit-scrollbar { width: 7px; }
 ::-webkit-scrollbar-track  { background: var(--bg-mid); }
 ::-webkit-scrollbar-thumb  { background: var(--pink-pale); border-radius: 4px; }
